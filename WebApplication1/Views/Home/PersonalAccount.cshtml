@@ -1,0 +1,77 @@
+﻿@using WebApplication1.Controllers
+@model WebApplication1.Models.UserAccountViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="jumbotron" style="background-color: white">
+        
+        <p class="lead">Hello, @Model.User.Name</p>       
+    </div>
+
+    <div class="row" style="margin-top: 8px; background-color: #e0e0eb; opacity: 0.7" >
+        <div class="col-md-3">
+            <h3>Light </h3>
+        </div>
+        <div class="col-md-3">
+            <h3>@Html.EditorFor(m => m.Raspi.Pin1, new {  })</h3>
+        </div>
+        <div class="col-md-6">
+            <h3>Light now: </h3>
+            <h3>
+            @Model.ToShortForm(@Model.Lights.LastOrDefault().LightData) measured at:
+            @Model.Lights.LastOrDefault().Time.AddHours(2).ToShortTimeString() @Model.Lights.LastOrDefault().Time.ToShortDateString()
+        </h3>
+    </div>
+    </div>
+
+    <div class="row" style="margin-top: 8px; background-color: #e0e0eb; opacity: 0.7">
+        <div class="col-md-3">
+            <h3>Heating </h3>
+        </div>
+        <div class="col-md-3">
+            <h3>@Html.EditorFor(m => m.Raspi.Pin2,"Pin2", new {  })</h3>
+        </div>
+        <div class="col-md-6">
+            <h3>Temperature now: </h3>
+            <h3>
+             @Model.ToShortForm(@Model.Temperatures.LastOrDefault().TempData) measured at:
+            @Model.Temperatures.LastOrDefault().Time.AddHours(2).ToShortTimeString() @Model.Temperatures.LastOrDefault().Time.ToShortDateString()
+        </h3>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 8px; background-color: #e0e0eb; opacity: 0.7">
+    <div class="col-md-3">
+        <h3>Home appliances </h3>
+    </div>
+    <div class="col-md-3">
+        <h3>@Html.EditorFor(m => m.Raspi.Pin3, new { onchange = "this.form.submit" })</h3>
+    </div>
+    <div class="col-md-6">
+        <h3>Motion now: </h3>
+        <h3>@Model.Motions.LastOrDefault().MotionData measured at: @Model.Motions.LastOrDefault().Time.AddHours(2).ToShortTimeString() @Model.Motions.LastOrDefault().Time.ToShortDateString()</h3>
+    </div>
+</div>
+<div class="row" style="margin-top: 8px;">
+
+    <div class="form-group" style="margin-top: 4px">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update Raspi" onclick="location.href='@Url.Action("SaveView", "Home", @Model)'" class="btn btn-default" />
+        </div>
+    </div>
+   
+</div>
+
+    }
+<div class="form-group" style="margin-top: 4px">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Update Raspi" onclick="location.href='@Url.Action("Index", "Raspis", @Model.Raspi)'" class="btn btn-default" />
+    </div>
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

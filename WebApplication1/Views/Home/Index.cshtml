@@ -1,0 +1,20 @@
+﻿@using WebApplication1.Controllers
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Home page</h1>
+    <h1></h1>    
+</div>
+
+<div class="row">
+    <div class="col-md-6" onclick="location.href='@Url.Action("Register", "Home")'">
+        <h2>Register</h2>
+        <p><a class="btn btn-default" onclick="location.href='@Url.Action("Register", "Home")'">Register &raquo;</a></p>
+    </div>
+    <div class="col-md-6" onclick="location.href='@Url.Action("Login", "Home")'">
+        <h2>Login</h2>
+        <p><a class="btn btn-default" onclick="location.href='@Url.Action("Login", "Home")'">Login &raquo;</a></p>
+    </div>
+</div>
