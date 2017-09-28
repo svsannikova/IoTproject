@@ -62,7 +62,7 @@ namespace WebApplication1.Models
                 parameter;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(address);
             request.Method = "POST";
-            var byteArray = Encoding.ASCII.GetBytes("svsannik:q123Q123!");
+            var byteArray = Encoding.ASCII.GetBytes("svsannik:*******");
             request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(byteArray));
             request.ContentLength = 0;
             try
